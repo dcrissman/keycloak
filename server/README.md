@@ -80,6 +80,7 @@ You can specify the DB vendor directly with the `DB_VENDOR` environment variable
 - `mysql` for the MySql database.
 - `mariadb` for the MariaDB database.
 - `oracle` for the Oracle database.
+- `mssql` for SQL Server database.
 
 If `DB_VENDOR` value is not specified the image will try to detect the DB vendor based on the following logic:
 
@@ -204,6 +205,18 @@ If you used a name for the Oracle instance other than `oracle` you need to speci
 - `DB_USER`: `SYSTEM`
 - `DB_PASSWORD`: `oracle`
 
+#### MSSQL Server Example
+
+#### To connect a existing external SQL Server.
+
+Start a Keycloak instance and connect to the external SQL Server instance:
+
+    DB_ADDR = URI of your SQL Server
+    DB_USER = User with Owner privileges
+    DB_PASSWORD = Password of owner user
+
+    docker run --name keycloak -e DB_VENDOR=mssql -e DB_ADDR=SQLServerHostname -e DB_DATABASE=DBName -e DB_USER=UserDBOwner -e DB_PASSWORD=DBPass -e KEYCLOAK_PASSWORD=admin -e KEYCLOAK_USER=admin netoralves/keycloak:5.0.0
+    
 ### Specify JDBC parameters
 
 When connecting Keycloak instance to the database, you can specify the JDBC parameters. Details on JDBC parameters can be
